@@ -1,29 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./../styles/menu.module.scss";
 
 const Menu = () => {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
-    const [icons, setIcons] = useState({ burgerIcon: "", phoneIcon: "" });
 
-    // Функция для получения данных из API
-    const fetchIcons = async () => {
-        try {
-            const response = await fetch("...");
-            const data = await response.json();
-            setIcons({
-                burgerIcon: data.burgerIcon,
-                phoneIcon: data.phoneIcon,
-            });
-        } catch (error) {
-            console.error("Ошибка при загрузке иконок:", error);
-        }
-    };
-
-    // Вызываем fetchIcons при монтировании компонента
-    useEffect(() => {
-        fetchIcons();
-    }, []);
 
     // Переключение бургер-меню
     const toggleMobileMenu = () => {
