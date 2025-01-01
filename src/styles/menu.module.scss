@@ -1,0 +1,234 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Общие стили меню */
+.menu {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 15px 20px;
+  position: relative;
+  z-index: 1000;
+}
+
+.menu__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  border: solid #2D9CDB;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+/* Основная навигация */
+.menu__nav {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu__list {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+}
+
+.menu__item {
+  position: relative;
+}
+
+.menu__link {
+  font-size: 16px;
+  color: #fff;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.menu__link:hover,
+.menu__item--active .menu__link {
+  color: #ff4d4d;
+}
+
+/* Подменю */
+.menu__submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -60px;
+  width: max-content;
+  background-color: #252830;
+  color: #ffffff;
+  border-radius: 5px;
+  list-style: none;
+  padding: 0 0;
+  z-index: 100;
+
+}
+
+.menu__submenu-link {
+  display: block;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.menu__submenu-link:hover {
+  background-color: #131417;
+  color: #fff;
+}
+
+/* Вложенное подменю */
+.menu__submenu .menu__submenu {
+  left: 100%; /* Смещение для вложенного подменю */
+  top: 0;
+}
+
+.menu__submenu--visible {
+  display: block;
+}
+
+.menu__item--active .menu__submenu {
+  display: block;
+}
+
+/* Бургер-меню */
+.menu__burger {
+  display: none;
+  width: 30px;
+  height: 30px;
+  background: url('alpaca-menu/src/assets/path-to-burger-icon.svg') no-repeat center;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+
+/* Затенение для мобильного меню */
+.menu__overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.menu__overlay--active {
+  display: block;
+}
+
+/* Телефон */
+.menu__phone {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.menu__phone-icon {
+  background: url('alpaca-menu/src/assets/path-to-phone-icon.svg') no-repeat center;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.menu__phone-number {
+  font-size: 16px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .menu__nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    z-index: 1000;
+  }
+
+  .menu__nav--active {
+    display: flex;
+  }
+
+  .menu__list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu__submenu {
+    position: relative;
+    box-shadow: none;
+  }
+
+  .menu__burger {
+    display: block;
+    background: aliceblue;
+  }
+
+  .menu__submenu-link {
+    padding: 10px 0;
+  }
+}
+
+.menu__submenu--visible {
+  display: block; /* Показать при наведении */
+}
+
+.menu__submenu-item {
+  position: relative; /* Для вложенного подменю */
+}
+@media (max-width: 768px) {
+  .menu__nav {
+    right: -100%; /* Уберите с экрана справа */
+    left: auto;
+    transition: right 0.3s ease-in-out;
+  }
+
+  .menu__nav--active {
+    right: 0; /* Показываем меню */
+  }
+}
+@media (max-width: 768px) {
+  .menu__phone {
+    justify-content: center;
+  }
+}
+.menu__submenu .menu__submenu {
+  left: 100%; /* Вложенное подменю смещается вправо */
+  top: 0;
+  position: absolute;
+}
+@media (max-width: 768px) {
+  .menu__burger {
+    position: absolute;
+    right: 20px;
+    top: 24px;
+  }
+}
+.menu__overlay {
+  display: none;
+}
+
+.menu__overlay--active {
+  display: block;
+}
