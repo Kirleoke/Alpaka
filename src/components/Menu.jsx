@@ -41,9 +41,7 @@ const Menu = () => {
                     h.M
                 </a>
                 <nav
-                    className={`${styles.menu__nav} ${
-                        isMobileMenuOpen ? styles["menu__nav--active"] : ""
-                    }`}
+                    className={`${styles.menu__nav} ${isMobileMenuOpen ? styles["menu__nav--active"] : ""}`}
                 >
                     <ul className={styles.menu__list}>
                         <li className={styles.menu__item}>
@@ -54,9 +52,7 @@ const Menu = () => {
 
                         {/* Основное меню */}
                         <li
-                            className={`${styles.menu__item} ${
-                                activeSubMenu === "main" ? styles["menu__item--active"] : ""
-                            }`}
+                            className={`${styles.menu__item} ${activeSubMenu === "main" ? styles["menu__item--active"] : ""}`}
                             onMouseEnter={() => handleMouseEnter("main")}
                             onMouseLeave={() => handleMouseLeave("main")}
                         >
@@ -65,9 +61,7 @@ const Menu = () => {
                                 <span className={styles.menu__arrow}></span>
                             </a>
                             <ul
-                                className={`${styles.menu__submenu} ${
-                                    activeSubMenu === "main" ? styles["menu__submenu--visible"] : ""
-                                }`}
+                                className={`${styles.menu__submenu} ${activeSubMenu === "main" ? styles["menu__submenu--visible"] : ""}`}
                             >
                                 <li>
                                     <a href="#" className={styles["menu__submenu-link"]}>
@@ -94,9 +88,7 @@ const Menu = () => {
                                         <span className={styles.menu__arrow__second}></span>
                                     </a>
                                     <ul
-                                        className={`${styles.menu__submenu} ${
-                                            activeSubOffer ? styles["menu__submenu--visible"] : ""
-                                        }`}
+                                        className={`${styles.menu__submenu} ${activeSubOffer ? styles["menu__submenu--visible"] : ""}`}
                                     >
                                         <li>
                                             <a href="#" className={styles["menu__submenu-link"]}>
@@ -140,9 +132,7 @@ const Menu = () => {
                 </a>
             </div>
             <div
-                className={`${styles.menu__overlay} ${
-                    isMobileMenuOpen ? styles["menu__overlay--active"] : ""
-                }`}
+                className={`${styles.menu__overlay} ${isMobileMenuOpen ? styles["menu__overlay--active"] : ""}`}
                 onClick={toggleMobileMenu}
             ></div>
         </header>
