@@ -65,6 +65,7 @@ a {
 
 /* Подменю */
 .menu__submenu {
+  margin-top: 30px;
   display: none;
   position: absolute;
   top: 100%;
@@ -76,8 +77,41 @@ a {
   list-style: none;
   padding: 0 0;
   z-index: 100;
-
+  transition: 0.3s;
 }
+
+.menu__arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  background-image: url("/src/assets/arrow.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu__item--active .menu__arrow {
+  transform: rotate(180deg);
+}
+
+.menu__arrow__second {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  background-image: url("/src/assets/arrow.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.menu__item--active .menu__arrow__second {
+  transform: rotate(180deg);
+}
+
+
 
 .menu__submenu-link {
   display: block;
@@ -99,19 +133,21 @@ a {
 }
 
 .menu__submenu--visible {
-  display: block;
+  display: block !important;
 }
 
 .menu__item--active .menu__submenu {
   display: block;
 }
 
+
+
 /* Бургер-меню */
 .menu__burger {
   display: none;
   width: 30px;
   height: 30px;
-  background: url('alpaca-menu/src/assets/path-to-burger-icon.svg') no-repeat center;
+  background: url('/src/assets/Vector.png') no-repeat center;
   background-size: cover;
   border: none;
   cursor: pointer;
@@ -136,22 +172,21 @@ a {
 /* Телефон */
 .menu__phone {
   display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
+  align-items: stretch;
 }
 
 .menu__phone-icon {
-  background: url('alpaca-menu/src/assets/path-to-phone-icon.svg') no-repeat center;
   width: 20px;
   height: 20px;
   margin-right: 10px;
+  background: url('/src/assets/Frame.png')
 }
 
 .menu__phone-number {
   font-size: 16px;
 }
 
-/* Адаптивность */
+/* Адаптив */
 @media (max-width: 768px) {
   .menu__nav {
     display: none;
@@ -182,13 +217,14 @@ a {
 
   .menu__burger {
     display: block;
-    background: aliceblue;
+    background: url('/src/assets/Vector.png') no-repeat center ;
   }
 
   .menu__submenu-link {
     padding: 10px 0;
   }
 }
+
 
 .menu__submenu--visible {
   display: block; /* Показать при наведении */
@@ -197,6 +233,16 @@ a {
 .menu__submenu-item {
   position: relative; /* Для вложенного подменю */
 }
+
+.menu__submenu--visible {
+  display: block;
+}
+
+.menu__submenu-item:hover .menu__submenu {
+  display: block;
+}
+
+
 @media (max-width: 768px) {
   .menu__nav {
     right: -100%; /* Уберите с экрана справа */
