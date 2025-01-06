@@ -53,13 +53,13 @@ a {
       top: 0;
       right: -100%;
       width: 50%;
-      height: 100%; /* Ограничение по высоте экрана */
+      height: 100%; 
       background-color: #131417;
       padding: 0px;
       transition: right 0.3s ease-in-out;
       z-index: 1000;
-      overflow-y: auto; /* Добавляем прокрутку */
-      overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+      overflow-y: auto; /* прокрутка */
+      overflow-x: hidden;
 
       &--active {
         right: 0;
@@ -91,11 +91,11 @@ a {
     position: relative;
     padding: 17px;
     @media (max-width: 768px) {
-      background: #252830; /* Цвет как у основных пунктов */
-      width: 100%; /* Растягиваем на полную ширину */
-      transition: background-color 0.3s ease; /* Анимация на hover */
+      background: #252830;
+      width: 100%;
+      transition: background-color 0.3s ease;
       &:hover {
-        background-color: #131417; /* Фон при наведении */
+        background-color: #131417;
       }
     }
 
@@ -129,9 +129,9 @@ a {
     cursor: pointer;
     transition: color 0.3s;
     @media (max-width: 768px) {
-      display: block; /* Ссылка заполняет весь пункт */
-      transition: color 0.3s ease; /* Анимация изменения цвета */
-      padding: 0; /* Убираем лишние отступы внутри ссылки */
+      display: block;
+      transition: color 0.3s ease;
+      padding: 0;
     }
 
     &:hover:not(.menu__link--no-hover),
@@ -157,15 +157,15 @@ a {
     @media (max-width: 768px) {
       position: relative;
       box-shadow: none;
-      margin-top: 0; /* Убираем отступы сверху */
-      width: 100%; /* Растягиваем на ширину родительского меню */
-      display: none; /* Скрываем по умолчанию */
-      position: relative; /* Для мобильной версии */
-      background-color: #252830; /* Цвет фона как у основных пунктов */
-      padding: 0; /* Убираем внутренние отступы */
-      list-style: none; /* Убираем маркеры списка */
+      margin-top: 0;
+      width: 100%;
+      display: none;
+      position: relative;
+      background-color: #252830;
+      padding: 0;
+      list-style: none;
       z-index: 1002;
-      margin-left: 0; /* Без дополнительных отступов */
+      margin-left: 0;
     }
   }
 
