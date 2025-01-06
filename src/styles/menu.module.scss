@@ -15,15 +15,21 @@ a {
   position: relative;
   z-index: 1001;
   @media (max-width: 768px) {
-    position: relative;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
     z-index: 1001;
   }
 
   &__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     z-index: 1001;
+    @media (max-width: 768px) {
+      justify-content: space-between;
+    }
   }
 
   &__logo {
@@ -55,6 +61,9 @@ a {
 
       &--active {
         right: 0;
+      }
+      @media (max-width: 375px) {
+        width: 90%;
       }
     }
   }
@@ -155,8 +164,7 @@ a {
     @media (max-width: 768px) {
       display: block;
       position: absolute;
-      right: 20px;
-      top: 24px;
+      right: 50px;
     }
   }
 
@@ -222,13 +230,33 @@ a {
     display: block;
   }
 
+  .menu__submenu__second {
+    width: 193px;
+    display: none;
+    position: absolute;
+    top: 112px;
+    left: 104%;
+    background-color: #252830;
+    border-radius: 5px;
+    padding: 0;
+    list-style: none;
+    z-index: 100;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .menu__submenu__second--visible {
+    display: block;
+  }
 
   &__phone {
     display: flex;
     align-items: center;
+    z-index: 1001;
 
-    @media (max-width: 375px) {
-      display: none;
+    @media (max-width: 768px) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     &-icon {
@@ -241,6 +269,18 @@ a {
 
     &-number {
       font-size: 16px;
+    }
+  }
+  @media (max-width: 375px) {
+    .menu__phone-number {
+      display: none;
+    }
+    .menu__phone-icon {
+      display: block;
+      position: absolute;
+      transform: translateX(270%);
+      width: 30px;
+      height: 30px;
     }
   }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./../styles/menu.module.scss";
 
 const Menu = () => {
@@ -6,32 +6,68 @@ const Menu = () => {
     const [activeSubMenu, setActiveSubMenu] = useState(null);
     const [activeSubOffer, setActiveSubOffer] = useState(false);
     const [submenuTimeout, setSubmenuTimeout] = useState(null);
+    const [offerTimeout, setOfferTimeout] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIsMobile = () => {
+            setIsMobile(window.innerWidth <= 768); // Условие для мобильной версии
+        };
+
+        checkIsMobile();
+        window.addEventListener("resize", checkIsMobile);
+
+        return () => window.removeEventListener("resize", checkIsMobile);
+    }, []);
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen((prevState) => !prevState);
     };
 
-    const handleMouseEnter = (submenu) => {
-        if (submenuTimeout) {
-            clearTimeout(submenuTimeout); // Очищаем таймер, если курсор вернулся
-            setSubmenuTimeout(null);
+    const cancelTimeout = (timeoutSetter) => {
+        if (timeoutSetter) {
+            clearTimeout(timeoutSetter);
         }
-        if (submenu === "offer") {
-            setActiveSubOffer(true);
-        } else {
-            setActiveSubMenu(submenu);
+    };
+
+    const handleMouseEnter = (submenu) => {
+        if (!isMobile) {
+            if (submenu === "offer") {
+                cancelTimeout(offerTimeout);
+                setActiveSubOffer(true);
+            } else {
+                cancelTimeout(submenuTimeout);
+                setActiveSubMenu(submenu);
+            }
         }
     };
 
     const handleMouseLeave = (submenu) => {
-        const timeout = setTimeout(() => {
+        if (!isMobile) {
             if (submenu === "offer") {
-                setActiveSubOffer(false);
+                const timeout = setTimeout(() => {
+                    setActiveSubOffer(false);
+                }, 300); // Задержка 300 мс
+                setOfferTimeout(timeout);
             } else {
-                setActiveSubMenu(null);
+                const timeout = setTimeout(() => {
+                    setActiveSubMenu(null);
+                }, 300); // Задержка 300 мс
+                setSubmenuTimeout(timeout);
             }
-        }, 300); // Задержка в миллисекундах
-        setSubmenuTimeout(timeout);
+        }
+    };
+
+    const toggleSubMenu = (submenu) => {
+        if (isMobile) {
+            setActiveSubMenu((prevSubMenu) => (prevSubMenu === submenu ? null : submenu));
+        }
+    };
+
+    const toggleSubOffer = () => {
+        if (isMobile) {
+            setActiveSubOffer((prevOffer) => !prevOffer);
+        }
     };
 
     return (
@@ -52,16 +88,23 @@ const Menu = () => {
 
                         {/* Основное меню */}
                         <li
-                            className={`${styles.menu__item} ${activeSubMenu === "main" ? styles["menu__item--active"] : ""}`}
+                            className={`${styles.menu__item} ${
+                                activeSubMenu === "main" ? styles["menu__item--active"] : ""
+                            }`}
                             onMouseEnter={() => handleMouseEnter("main")}
                             onMouseLeave={() => handleMouseLeave("main")}
                         >
-                            <a className={styles.menu__link}>
+                            <a
+                                className={styles.menu__link}
+                                onClick={() => toggleSubMenu("main")}
+                            >
                                 <span>Основное меню</span>
                                 <span className={styles.menu__arrow}></span>
                             </a>
                             <ul
-                                className={`${styles.menu__submenu} ${activeSubMenu === "main" ? styles["menu__submenu--visible"] : ""}`}
+                                className={`${styles.menu__submenu} ${
+                                    activeSubMenu === "main" ? styles["menu__submenu--visible"] : ""
+                                }`}
                             >
                                 <li>
                                     <a href="#" className={styles["menu__submenu-link"]}>
@@ -83,12 +126,18 @@ const Menu = () => {
                                     onMouseEnter={() => handleMouseEnter("offer")}
                                     onMouseLeave={() => handleMouseLeave("offer")}
                                 >
-                                    <a href="#" className={styles["menu__submenu-link"]}>
+                                    <a
+                                        href="#"
+                                        className={styles["menu__submenu-link"]}
+                                        onClick={toggleSubOffer}
+                                    >
                                         <span>Есть предложение</span>
                                         <span className={styles.menu__arrow__second}></span>
                                     </a>
                                     <ul
-                                        className={`${styles.menu__submenu} ${activeSubOffer ? styles["menu__submenu--visible"] : ""}`}
+                                        className={`${styles.menu__submenu__second} ${
+                                            activeSubOffer ? styles["menu__submenu__second--visible"] : ""
+                                        }`}
                                     >
                                         <li>
                                             <a href="#" className={styles["menu__submenu-link"]}>
@@ -102,7 +151,6 @@ const Menu = () => {
                                         </li>
                                     </ul>
                                 </li>
-
                             </ul>
                         </li>
 
@@ -127,7 +175,7 @@ const Menu = () => {
                 ></button>
 
                 {/* Телефон */}
-                <a href="tel:+123456789" className={styles.menu__phone}>
+                <a href="tel:+13212223333" className={styles.menu__phone}>
                     <span className={styles["menu__phone-icon"]}></span>
                     <span className={styles["menu__phone-number"]}>+1 (321) 222 - 33 - 33</span>
                 </a>
