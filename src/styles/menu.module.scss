@@ -53,17 +53,20 @@ a {
       top: 0;
       right: -100%;
       width: 50%;
-      height: 100%;
+      height: 100%; /* Ограничение по высоте экрана */
       background-color: #131417;
-      padding: 20px;
+      padding: 0px;
       transition: right 0.3s ease-in-out;
       z-index: 1000;
+      overflow-y: auto; /* Добавляем прокрутку */
+      overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
 
       &--active {
         right: 0;
       }
+
       @media (max-width: 375px) {
-        width: 90%;
+        width: 100%;
       }
     }
   }
@@ -77,12 +80,24 @@ a {
 
     @media (max-width: 768px) {
       flex-direction: column;
-      gap: 10px;
+      gap: 2px;
     }
   }
 
+
+
+
   &__item {
     position: relative;
+    padding: 17px;
+    @media (max-width: 768px) {
+      background: #252830; /* Цвет как у основных пунктов */
+      width: 100%; /* Растягиваем на полную ширину */
+      transition: background-color 0.3s ease; /* Анимация на hover */
+      &:hover {
+        background-color: #131417; /* Фон при наведении */
+      }
+    }
 
     &--with-submenu::after {
       content: '';
@@ -113,6 +128,11 @@ a {
     color: #fff;
     cursor: pointer;
     transition: color 0.3s;
+    @media (max-width: 768px) {
+      display: block; /* Ссылка заполняет весь пункт */
+      transition: color 0.3s ease; /* Анимация изменения цвета */
+      padding: 0; /* Убираем лишние отступы внутри ссылки */
+    }
 
     &:hover:not(.menu__link--no-hover),
     &--active {
@@ -121,7 +141,7 @@ a {
   }
 
   &__submenu {
-    margin-top: 29px;
+    margin-top: 15px;
     width: 193px;
     display: none;
     position: absolute;
@@ -137,6 +157,15 @@ a {
     @media (max-width: 768px) {
       position: relative;
       box-shadow: none;
+      margin-top: 0; /* Убираем отступы сверху */
+      width: 100%; /* Растягиваем на ширину родительского меню */
+      display: none; /* Скрываем по умолчанию */
+      position: relative; /* Для мобильной версии */
+      background-color: #252830; /* Цвет фона как у основных пунктов */
+      padding: 0; /* Убираем внутренние отступы */
+      list-style: none; /* Убираем маркеры списка */
+      z-index: 1002;
+      margin-left: 0; /* Без дополнительных отступов */
     }
   }
 
@@ -145,6 +174,9 @@ a {
     color: #fff;
     display: block;
     transition: background-color 0.3s;
+    @media (max-width: 768px) {
+      padding: 10px 0;
+    }
 
     &:hover {
       background-color: #131417;
@@ -160,6 +192,10 @@ a {
     border: none;
     cursor: pointer;
     z-index: 1001;
+    transition: transform 0.3s ease-in-out;
+    &--active {
+      transform: rotate(90deg);
+    }
 
     @media (max-width: 768px) {
       display: block;
@@ -216,14 +252,16 @@ a {
     background-repeat: no-repeat;
     transition: transform 0.3s ease-in-out;
     transform: rotate(-90deg) !important;
-
-    &.menu__arrow__second {
-      transform: rotate(90deg); /* Для вложенного подменю */
+    @media (max-width: 768px) {
+      transform: rotate(0deg) !important;
     }
   }
   .menu__submenu-item:hover .menu__arrow__second,
   .menu__submenu-item--active .menu__arrow__second {
     transform: rotate(90deg) !important;
+    @media (max-width: 768px) {
+      transform: rotate(180deg) !important;
+    }
   }
 
   .menu__submenu--visible {
@@ -242,6 +280,12 @@ a {
     list-style: none;
     z-index: 100;
     transition: opacity 0.3s ease-in-out;
+    @media (max-width: 768px) {
+      top: 0;
+      left: 0;
+      display: none;
+      position: relative;
+    }
   }
 
   .menu__submenu__second--visible {

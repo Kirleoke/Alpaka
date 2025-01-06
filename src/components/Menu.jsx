@@ -66,6 +66,10 @@ const Menu = () => {
 
     const toggleSubOffer = () => {
         if (isMobile) {
+            // Если подменю уже открыто, закрываем его и сбрасываем стрелочку
+            setActiveSubOffer((prevOffer) => !prevOffer);
+        } else {
+            // Для десктопа просто переключаем состояние
             setActiveSubOffer((prevOffer) => !prevOffer);
         }
     };
@@ -169,7 +173,7 @@ const Menu = () => {
 
                 {/* Бургер-меню */}
                 <button
-                    className={styles.menu__burger}
+                    className={`${styles.menu__burger} ${isMobileMenuOpen ? styles["menu__burger--active"] : ""}`}
                     onClick={toggleMobileMenu}
                     aria-label="Toggle menu"
                 ></button>
