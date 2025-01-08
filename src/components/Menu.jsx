@@ -66,10 +66,8 @@ const Menu = () => {
 
     const toggleSubOffer = () => {
         if (isMobile) {
-            // Если подменю уже открыто, закрываем его и сбрасываем стрелочку
             setActiveSubOffer((prevOffer) => !prevOffer);
         } else {
-            // Для десктопа просто переключаем состояние
             setActiveSubOffer((prevOffer) => !prevOffer);
         }
     };
@@ -103,7 +101,11 @@ const Menu = () => {
                                 onClick={() => toggleSubMenu("main")}
                             >
                                 <span>Основное меню</span>
-                                <span className={styles.menu__arrow}></span>
+                                <span
+                                    className={`${styles.menu__arrow} ${
+                                        activeSubMenu === "main" ? styles["menu__arrow--active"] : ""
+                                    }`}
+                                ></span>
                             </a>
                             <ul
                                 className={`${styles.menu__submenu} ${
@@ -136,11 +138,19 @@ const Menu = () => {
                                         onClick={toggleSubOffer}
                                     >
                                         <span>Есть предложение</span>
-                                        <span className={styles.menu__arrow__second}></span>
+                                        <span
+                                            className={`${styles.menu__arrow__second} ${
+                                                activeSubOffer
+                                                    ? styles["menu__arrow__second--active"]
+                                                    : ""
+                                            }`}
+                                        ></span>
                                     </a>
                                     <ul
                                         className={`${styles.menu__submenu__second} ${
-                                            activeSubOffer ? styles["menu__submenu__second--visible"] : ""
+                                            activeSubOffer
+                                                ? styles["menu__submenu__second--visible"]
+                                                : ""
                                         }`}
                                     >
                                         <li>

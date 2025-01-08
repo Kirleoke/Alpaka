@@ -53,7 +53,7 @@ a {
       top: 0;
       right: -100%;
       width: 50%;
-      height: 100%; 
+      height: 100%;
       background-color: #131417;
       padding: 0px;
       transition: right 0.3s ease-in-out;
@@ -91,9 +91,12 @@ a {
     position: relative;
     padding: 17px;
     @media (max-width: 768px) {
+      padding: 17px 17px 0 17px;
       background: #252830;
       width: 100%;
       transition: background-color 0.3s ease;
+      margin-left: -17px;
+
       &:hover {
         background-color: #131417;
       }
@@ -131,7 +134,9 @@ a {
     @media (max-width: 768px) {
       display: block;
       transition: color 0.3s ease;
-      padding: 0;
+      padding-left: 20px;
+      padding-bottom: 17px;
+
     }
 
     &:hover:not(.menu__link--no-hover),
@@ -155,6 +160,7 @@ a {
     transition: opacity 0.3s ease-in-out;
 
     @media (max-width: 768px) {
+      padding-left: 15px;
       position: relative;
       box-shadow: none;
       margin-top: 0;
@@ -166,6 +172,7 @@ a {
       list-style: none;
       z-index: 1002;
       margin-left: 0;
+      border-radius: 0;
     }
   }
 
@@ -175,7 +182,9 @@ a {
     display: block;
     transition: background-color 0.3s;
     @media (max-width: 768px) {
-      padding: 10px 0;
+      padding: 17px 0;
+      margin-left: -18px;
+      padding-left: 39px;
     }
 
     &:hover {
@@ -266,6 +275,9 @@ a {
 
   .menu__submenu--visible {
     display: block;
+    //@media (max-width: 768px) {
+    //  margin-top: 17px;
+    //}
   }
 
   .menu__submenu__second {
@@ -285,6 +297,8 @@ a {
       left: 0;
       display: none;
       position: relative;
+      border-radius: 0px;
+      width: 100%;
     }
   }
 
@@ -313,6 +327,10 @@ a {
 
     &-number {
       font-size: 16px;
+      transition: 0.5s;
+    }
+    &-number:hover{
+      color: green;
     }
   }
   @media (max-width: 375px) {
